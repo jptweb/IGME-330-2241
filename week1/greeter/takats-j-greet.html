@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Greeter</title>
+    <style>
+      *{font-size:1.5em;}
+
+      button{
+        height:50px;
+        width:100px;
+        font-size:14px;
+      }
+    </style>
+    <script>
+
+    "use strict";
+    
+    //scoped to function (or global) rather that to a code block like most languages
+    function example() {
+      if (true) {
+          var x = 10;
+          let y = 20;
+      }
+
+      console.log(x); // Output: 10
+      console.log(y); // ReferenceError: y is not defined
+    }
+
+    example();
+
+
+    //EX: can be referenced BEFORE they are declared - which can lead to code errors!
+      //Below will cause a refercneError
+      // console.log(myVar); // Output: undefined
+      // let myVar = 5;
+
+      //This will just give me an undefined
+      //console.log(myVar); // Output: undefined
+      //var myVar = 5;
+
+
+    //console.log(myLetVar); // Output: 5
+    
+    // 1 - get a reference to the button
+    document.addEventListener('DOMContentLoaded', function(){
+      //document.querySelector('button').innerHTML;
+      console.log(document.querySelector('button'));
+
+      let button = document.querySelector('button');
+
+      // 2 - add a click event to button that calls a `sayHello` function
+      button.addEventListener('click',function(){
+
+        //console.log('clicked');
+        sayHello();
+      });
+
+
+      // 3B - get a reference to the #output <p> 
+      let output = document.querySelector('#output');
+
+      output.style.color = "red";
+      output.style.background = "yellow";
+
+      // 3 - create a `sayHello()` function
+      function sayHello(){
+            // 3A - get name of person from the <input>
+            let nameinput = document.querySelector("#input-firstname");
+            let namevalue = nameinput.value;
+            
+
+            
+            // 3C - update HTML of #output <p>            
+            output.innerHTML = namevalue;
+      }
+
+      
+  
+ 
+
+
+
+    });
+
+    
+    </script>
+  </head>
+<body>
+  <button>Click Me!</button>
+  <input id="input-firstname" placeholder="Type in your first name">
+  <input id="input-lastname" placeholder="Type in your last name">
+  <p id="output">???</p>
+</body>
+</html>
