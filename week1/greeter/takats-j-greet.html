@@ -16,6 +16,10 @@
 
     "use strict";
     
+
+    //Constant Values: Use const for variables that should not be reassigned. For example, configuration values, fixed data, or constants used throughout your code.
+
+
     //scoped to function (or global) rather that to a code block like most languages
     function example() {
       if (true) {
@@ -26,7 +30,12 @@
       console.log(x); // Output: 10
       console.log(y); // ReferenceError: y is not defined
     }
+    //var and Function Scope: In this example, the variable x is declared using var inside an if block. Despite being inside a block, x is accessible outside the block but still within the function, because var is function-scoped.
+    //let and Block Scope: The variable y, declared with let, is block-scoped. Therefore, it is only accessible inside the if block. Trying to access y outside the block results in a ReferenceError
 
+    //var does not respect block scope (like if, for, or while blocks) and instead is scoped to the entire function, which can lead to unintended behavior. 
+    //let and const, however, are block-scoped, making them safer and more predictable in terms of where they can be accessed.
+   
     example();
 
 
