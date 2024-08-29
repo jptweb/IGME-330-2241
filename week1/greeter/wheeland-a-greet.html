@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Greeter</title>
+    <style>
+      *{font-size:1.5em;}
+
+      button{
+        height:50px;
+        width:100px;
+        font-size:14px;
+      }
+    </style>
+    <script>
+
+    "use strict";
+
+    
+    // 1 - get a reference to the button
+    document.addEventListener('DOMContentLoaded', function(){
+      //document.querySelector('button').innerHTML;
+      console.log(document.querySelector('button'));
+
+      let button = document.querySelector('button');
+
+      //We could do this 
+      //button.onclick = sayHello;
+      //or we could do it like below:
+
+
+      // // 2 - add a click event to button that calls a `sayHello` function
+      button.addEventListener('click',function(){
+
+        //console.log('clicked');
+        sayHello();
+      });
+
+      //OR
+      //button.addEventListener('click', sayHello);
+      //The advtange of above that multiple events can be applied as opposed to one
+
+
+      // 3B - get a reference to the #output <p> 
+
+
+      output.style.color = "red";
+      output.style.background = "yellow";
+
+      // 3 - create a `sayHello()` function
+      function sayHello(){
+            // 3A - get name of person from the <input>
+            let firstname = document.querySelector("#input-firstname").value;
+
+            if (firstname == ""){
+                firstname == "Peter";
+            }
+
+            //OR
+            if(firstname.length==0){
+                firstname = "Bob";
+            }
+
+            let output = document.querySelector('#output');
+            // 3C - update HTML of #output <p>            
+            output.innerHTML = firstname;
+      }
+
+      
+  
+ 
+      // const name = "Alice";
+      // const age = 30;
+
+      // const greeting = `Hello, my name is ${name} and I am ${age} years old.`;
+
+
+
+    });
+
+    
+    </script>
+  </head>
+<body>
+  <button>Click Me!</button>
+  <input id="input-firstname" placeholder="Type in your first name">
+  <input id="input-lastname" placeholder="Type in your last name">
+  <p id="output">???</p>
+</body>
+</html>

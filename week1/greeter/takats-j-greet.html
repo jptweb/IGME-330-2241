@@ -36,7 +36,7 @@
     //var does not respect block scope (like if, for, or while blocks) and instead is scoped to the entire function, which can lead to unintended behavior. 
     //let and const, however, are block-scoped, making them safer and more predictable in terms of where they can be accessed.
    
-    example();
+    //example();
 
 
     //EX: can be referenced BEFORE they are declared - which can lead to code errors!
@@ -58,12 +58,21 @@
 
       let button = document.querySelector('button');
 
-      // 2 - add a click event to button that calls a `sayHello` function
+      //We could do this 
+      //button.onclick = sayHello;
+      //or we could do it like below:
+
+
+      // // 2 - add a click event to button that calls a `sayHello` function
       button.addEventListener('click',function(){
 
         //console.log('clicked');
         sayHello();
       });
+
+      //OR
+      //button.addEventListener('click', sayHello);
+      //The advtange of above that multiple events can be applied as opposed to one
 
 
       // 3B - get a reference to the #output <p> 
@@ -87,6 +96,10 @@
       
   
  
+      // const name = "Alice";
+      // const age = 30;
+
+      // const greeting = `Hello, my name is ${name} and I am ${age} years old.`;
 
 
 
