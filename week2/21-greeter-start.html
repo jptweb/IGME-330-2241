@@ -6,8 +6,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     
     <style>
       *{font-size:1.5em;}
@@ -16,12 +15,7 @@
         height:50px;
         width:150px;
         font-size:14pt;
-      }
-
-      #input-firstname{
-        font-family: "Nerko One", system-ui;
-        font-weight: 400;
-        font-style: normal;
+        font-family:"Comic Neue", cursive;
       }
 
       /* Do the media query greater than 1024*/
@@ -39,15 +33,42 @@
 
     function init(){
         // 1 - get a reference to the button
-        let button = document.querySelector("#btn-greet");
-        console.log(button);
+        let btnGreet = document.querySelector("#btn-greet");
+   
         // 2 - add a click event to button that calls a `sayHello` function
-        button.addEventListener('click',function(){ sayHello(); });
+        btnGreet.addEventListener('click',function(){ greet("Hola"); });
+
+        let btnBye = document.querySelector("#btn-bye");
+
+        btnBye.onclick = () => { greet("Goodbye") };
+       
 
         //Imperatively (using JavaScript) give the paragraph a red text color, and a yellow background color
         output.style.color = "red";
         output.style.background = "yellow";
 
+        if(undefined){
+          //ths would not run
+          
+        }
+
+
+    }
+
+    function greet(message){
+      let firstname = document.querySelector("#input-firstname").value.trim();
+      let lastname = document.querySelector("#input-lastname").value.trim();
+
+      let output = document.querySelector("#output");
+
+      //If the user does not enter any text into the <input>, then use a default of "Peter" for the first name
+      if (firstname==""){
+        firstname = "Peter";
+      }
+      lastname = lastname || "Peter";
+
+      output.innerHTML = `${message}, ${firstname} ${lastname}`;
+      
 
     }
 
@@ -56,19 +77,18 @@
 
       //Day 2b - 2 (add trim)
       let firstname = document.querySelector("#input-firstname").value.trim();
+      let lastname = document.querySelector("#input-lastname").value.trim();
 
-      console.log("firstname: "+firstname);
-
-      // 3B - get a reference to the #output <p>
       let output = document.querySelector("#output");
 
       //If the user does not enter any text into the <input>, then use a default of "Peter" for the first name
       if (firstname==""){
         firstname = "Peter";
       }
-
+      lastname = lastname || "Peter";
+      
       //lets try a template ? method
-      output.innerHTML = `Hello, ${firstname}`;
+      output.innerHTML = `Hello, ${firstname} ${lastname}`;
 
     }
 
@@ -83,8 +103,10 @@
     </script>
   </head>
 <body>
-  <button id="btn-greet">Click Me!</button>
-  <input id="input-firstname" placeholder="Type in your name">
+  <button id="btn-greet">Say Hello</button>
+  <button id="btn-bye">Say Bye</button>
+  <input id="input-firstname" placeholder="Type in your first name">
+  <input id="input-lastname" placeholder="Type in your last name">
   <p id="output">???</p>
 </body>
 </html>
