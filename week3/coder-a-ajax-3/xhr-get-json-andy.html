@@ -28,6 +28,7 @@
     xhr.onload = (e) => {
       console.log(`In onload - HTTP Status Code = ${e.target.status}`);
       const string = e.target.responseText;
+      console.log("string json: " + string);
       let json;
 
       try{
@@ -42,6 +43,7 @@
       const dogNames = json.dognames;
       const catNames = json.catnames;
 
+      console.log(dogNames);
       const dogHtml = `<ol>${dogNames.map(w => `<li>${w}</li>`).join("")}</ol>`;
       const catHtml = `<ol>${catNames.map(w => `<li>${w}</li>`).join("")}</ol>`;
 
