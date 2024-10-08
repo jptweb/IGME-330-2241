@@ -130,6 +130,7 @@
             document.querySelector("canvas").onclick = canvasClicked;
 
             document.querySelector("#btn-play").onclick = () => {
+				if(!paused) return;
                 paused = false;
                 update();
             }

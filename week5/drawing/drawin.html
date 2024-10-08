@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Drawin'!</title>
+	<style>
+		canvas{border: 2px solid #ccc;}
+	</style>
+</head>
+<body>
+<canvas width="640" height="480"></canvas>
+<script>
+	let ctx = document.querySelector('canvas').getContext('2d');
+	ctx.save();                 // A - optionally, save the drawing state attributes and CTM
+	ctx.strokeStyle = "red";    // B - optionally, change the values of one or more drawing state attributes
+	ctx.fillStyle = "yellow";   // B
+	ctx.lineWidth = 4;       // B
+
+    ctx.lineJoin = "round";
+
+    //ctx.setLineDash([5,15]);
+	ctx.beginPath();            // C - describe a path
+
+    // ctx.arc(200, 200, 125, 0, Math.PI * 2, false); // draws a circle at 200,200 with a 125-pixel radius
+    // ctx.arc(200, 200, 50, 0, Math.PI * 2, true);  // punches out the center of the circle
+    // ctx.closePath();
+    // ctx.stroke();
+    // ctx.fill();  
+	//ctx.closePath();            // 
+
+    //ctx.fillStyle = "red";
+    ctx.moveTo(50, 100);             	// P0
+  ctx.arcTo(300, 425, 550, 100, 80); 	// P1, P2 and the radius
+  ctx.lineTo(550, 100);               // top line: line segment between P0 & P2     
+  ctx.closePath();
+  ctx.stroke();               
+  ctx.fill();     
+
+    //next part
+    ctx.beginPath();
+    //Curved bottom traingle
+    ctx.moveTo(50, 100);             	// P0
+    ctx.arcTo(300, 425, 550, 100, 80); 	// P1, P2 and the radius
+    ctx.lineTo(550, 100);               // top line: line segment between P0 & P2     
+    ctx.closePath();
+    ctx.stroke();               
+    ctx.fill();     
+
+    // D - swap the order of stroke() and fill() to see what happens to the drawing
+	ctx.restore();              // E - optionally, restore the saved values of drawing state attributes and CTM
+
+
+    //things to talk about..
+    //change the order of the fill and stroke
+    // ad the arc code. when false its counter clockwise
+    //now change the order again
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // Define the class
+    class Thing{
+      constructor(type){
+        this.type = type;
+      }
+      sayHello(){
+        console.log(`I am a ${this.constructor.name} of type=${this.type}`);
+      }
+    }
+    
+    // Create an instance of that class
+    let thing = new Thing("Slimy");
+    console.log(thing); // Thing {type: 'Slimy'}
+    console.log(thing.sayHello()); // I am a Thing of type=Slimy
+    </script>
+</body>
+</html>

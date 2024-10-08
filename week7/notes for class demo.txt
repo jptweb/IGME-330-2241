@@ -1,0 +1,45 @@
+First comment out the shadow stuff, and show how it changes everything
+
+show one approach could be to reset everything each time (copy and paste the offset o mrever them back to zero)
+
+Now show htem the approach of save() and restore() and the graphic
+
+
+Next lets explore translate (there is a setTransform that does all three at once)
+-translate
+-rotate
+
+Point out the issues we are running into with the traingle
+
+Now lets try to do individual ones. Lets get rid of the gren and blue squares
+
+Move the Good triangle to right below where we create yellow box.
+
+Explain how it draws it with center point in origin
+
+Try to move it around etc to demonstrate
+
+Now lets do the same thing with the squares
+
+Lets bring in the helper function.
+
+Explain it briefly, put the calls right below the better triangle
+
+
+Now lets animate:
+rename init to loop
+
+move context variable ctx out
+
+Add request animation frame
+
+NOW ITs spinng out of control! we need to save and restore!! 
+ADD save() after // do some transformationss
+
+add variable for rotating set = 0 script scopre
+
+increment roation below request animationframe: rotation+=.05;
+
+replace roation vairable in the ctx.rotate()
+
+change valiue in drawsquare to so it uses the rotation variable too
