@@ -18,6 +18,8 @@ const App = () => {
 
   const [term,setTerm] = useState("");
   const [results,setResults] = useState([]);
+
+  console.log("App Rerendering");
   
   useEffect(() => {
     writeToLocalStorage("term", term);

@@ -9,32 +9,11 @@ const baseurl = "https://www.amiiboapi.com/api/amiibo/?name=";
 const loadXHR = (url, callback) => {
   // set up the connection
 
-  /*
-  A bit longer of a method but more like we maybe did earlier in year?
-  const xhr = new XMLHttpRequest();
-
-  xhr.open('GET', url, true);
-
-  // when the data loads, invoke the callback function and pass it the `xhr` object
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      //console.log(xhr);
-      callback(xhr);
-    } else {
-      console.error('Error reading the shape data');
-    }
-  };
-
-  xhr.send();
-  */
-
   //A more verbose method:
   const xhr = new XMLHttpRequest();
   xhr.onload = () => callback(xhr);
   xhr.open("GET", url);
   xhr.send();
-
-
 };
 
 //NOTE: This needs to be moved out and modified!
