@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Firebase Admin</title>
+  </head>
+  <body>
+    <h1>High Scores</h1>
+    <ul id="scoresList">
+      <li>No data yet!</li>
+    </ul>
+
+    <script type="module">
+      /* #1 - The Firebase setup code goes here  - both imports, `firebaseConfig` and `app` */
+
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+      import {
+        getDatabase,
+        ref,
+        set,
+        push,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyC-tjAsi50HGTrTAp1XKEbWmJ-vCAnEcbE",
+        authDomain: "high-scores-4532a.firebaseapp.com",
+        databaseURL: "https://high-scores-4532a-default-rtdb.firebaseio.com",
+        projectId: "high-scores-4532a",
+        storageBucket: "high-scores-4532a.firebasestorage.app",
+        messagingSenderId: "994121685632",
+        appId: "1:994121685632:web:a0278d5c29d086fb36a465",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      console.log(app); // make sure firebase is loaded
+
+      // #2 NEW STUFF
+      const db = getDatabase();
+      const scoresRef = ref(db, "scores");
+
+        /*
+    The value of each player score in an object literal that contains the userId, game and score values we have previously sent to Firebase
+    You will display this data to the user by generating HTML list items - <li> elements in the forEach() loop above
+    Hint: childData is on object that holds the user score - and it has userId, game and score properties
+    */
+
+      // #3 - Add the code to display the scores in the list
+      const scoresList = document.getElementById("scoresList");
+
+      const scoresChanged = (snapshot) => {
+        scoresList.innerHTML = "";
+        snapshot.forEach((score) => {
+          const childKey = score.key;
+          const childData = score.val();
+          const li = document.createElement("li");
+          li.innerText = `${childData.userId} - ${childData.game}: ${childData.score}`;
+          scoresList.appendChild(li);
+        });
+      };
+
+      onValue(scoresRef, scoresChanged);
+    </script>
+  </body>
+</html>
