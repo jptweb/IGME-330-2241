@@ -1,0 +1,16 @@
+<script>
+
+
+function testScope() {
+    if (true) {
+        var x = 10;
+        let y = 20;
+    }
+
+    console.log(x); // Outputs: 10 (var is function-scoped)
+    console.log(y); // ReferenceError: y is not defined (let is block-scoped)
+}
+
+testScope();
+
+</script>

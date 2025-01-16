@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Greeter</title>
+    <style>
+      * {
+        font-size: 1.5em;
+      }
+    </style>
+    <script>
+      "usestrict";
+
+      //console.log(document.querySelectorAll("button"));
+
+      // 2 - add a click event to button that calls a `sayHello` function
+      // 3 - create a `sayHello()` function
+      // 3A - get name of person from the <input>
+      // 3B - get a reference to the #output <p>
+      // 3C - update HTML of #output <p>
+
+      // 1 - get a reference to the button
+      //type selectors , id seelctor, classs
+
+      function init() {
+        const button = document.querySelector("button");
+
+        console.log(button);
+
+        //NOTICE THIS DOES NOT WORK AS IT it immediatly if written like this
+        //button.onclick = sayHello();
+
+        button.onclick = sayHello;
+      }
+
+      window.onload = init;
+
+      function sayHello() {
+        console.log("Hello");
+        const firstname = document.querySelector("#input-firstname").value;
+        console.log(firstname);
+        const output = document.querySelector("#output");
+
+        output.innerHTML = "Greetings " + firstname;
+      }
+
+      var a = 10;
+
+      function addThem(a, b) {
+        return a + b;
+      }
+
+      console.log(addThem(3, 4));
+
+    </script>
+  </head>
+  <body>
+    <button>Click Me!</button>
+    <input id="input-firstname" placeholder="Type in your name" />
+    <p id="output">???</p>
+  </body>
+</html>
