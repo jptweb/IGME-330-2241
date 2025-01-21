@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Greeter</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lemon&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        font-size: 1.5em;
+        font-family: "Lemon", serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      button {
+        height: 50px;
+        width: 100px;
+        font-size: 14pt;
+      }
+
+      /*Less than 800 */
+      @media screen and (max-width: 800px) {
+        body {
+          background: green;
+        }
+      }
+
+      /* Less than 600 */
+      @media screen and (max-width: 600px) {
+        body {
+          background: orange;
+        }
+      }
+    </style>
+
+    <script>
+      "usestrict";
+
+      function init() {
+        const helloBtn = document.querySelector("#hello-btn");
+        const goodbyeBtn = document.querySelector("#goodbye-btn");
+
+        // helloBtn.addEventListener("click", function () {
+        //   sayHello();
+        // });
+
+        // goodbyeBtn.onclick = sayGoodbye;
+
+        goodbyeBtn.onclick = () => { greet("Gooooodbye") };
+        //Imperatively (using JavaScript) give the paragraph
+        // a red text color, and a yellow background color
+        let paragraph = document.querySelector("#output");
+        paragraph.style.color = "red";
+        paragraph.style.backgroundColor = "yellow";
+      }
+
+      function sayHello() {
+        console.log("Im clicked");
+        const firstname = document.querySelector("#input-firstname").value;
+        const lastname = document.querySelector("#input-lastname").value;
+
+        const output = document.querySelector("#output");
+        output.innerHTML = "Greetings: " + firstname + " " + lastname;
+
+        console.log(output);
+      }
+
+      function sayGoodbye() {
+        const firstname = document.querySelector("#input-firstname").value;
+        const lastname = document.querySelector("#input-lastname").value;
+
+        const output = document.querySelector("#output");
+
+        output.innerHTML = "Goodbye: " + lastname;
+      }
+
+      function greet(message) {
+        let firstname = document.querySelector("#input-firstname").value.trim();
+        let lastname = document.querySelector("#input-lastname").value.trim();
+
+        let output = document.querySelector("#output");
+
+        //If the user does not enter any text into the <input>, then use a default of "Peter" for the first name
+        if (firstname == "") {
+          firstname = "Peter";
+        }
+        lastname = lastname || "Peter";
+
+        //DO this after talking about template strings
+        output.innerHTML = `${message}, ${firstname} ${lastname}`;
+      }
+
+      window.onload = init;
+    </script>
+  </head>
+  <body>
+    <button id="hello-btn">Say Hello</button>
+
+    <button id="goodbye-btn">Say Goodbye</button>
+
+    <input id="input-firstname" placeholder="Type in your first name" />
+
+    <input id="input-lastname" placeholder="Type in your last name" />
+
+    <p id="output">???</p>
+  </body>
+</html>
