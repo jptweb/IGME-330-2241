@@ -44,23 +44,18 @@
       "usestrict";
 
       function init() {
-    
         let helloBtn = document.querySelector("#hello-btn");
         let goodbyeBtn = document.querySelector("#goodbye-btn");
 
-        console.log(helloBtn);
-        console.log(goodbyeBtn);
-
         helloBtn.addEventListener("click", function () {
-          greet("Hello");
+          sayHello();
         });
 
-    
         goodbyeBtn.addEventListener("click", function () {
-          greet("Goodbye");
+          sayGoodBye();
         });
 
-        goodbyeBtn.onclick = (e) => greet("Goodbye");
+        goodbyeBtn.onclick = sayHello();
 
         //Imperatively (using JavaScript) give the paragraph
         // a red text color, and a yellow background color
@@ -73,9 +68,11 @@
         console.log("Im clicked");
         let firstname = document.querySelector("#input-firstname").value;
         let lastname = document.querySelector("#input-lastname").value;
-        console.log("FN:" +firstname);
-        
-        if(firstname == ""  ){  firstname = "Peter"; }
+        console.log("FN:" + firstname);
+
+        if (firstname == "") {
+          firstname = "Peter";
+        }
 
         firstname = firstname.trim();
 
@@ -85,13 +82,15 @@
         console.log(output);
       }
 
-      function sayGoodBye(){
+      function sayGoodBye() {
         console.log("Im clicked");
         let firstname = document.querySelector("#input-firstname").value;
         let lastname = document.querySelector("#input-lastname").value;
-        console.log("FN:" +firstname);
-        
-        if(firstname == ""  ){  firstname = "Peter"; }
+        console.log("FN:" + firstname);
+
+        if (firstname == "") {
+          firstname = "Peter";
+        }
 
         firstname = firstname.trim();
 
@@ -99,24 +98,6 @@
         output.innerHTML = "Goodbye: " + firstname + " " + lastname;
 
         console.log(output);
-
-      }
-
-      function greet(message){
-        console.log("Im clicked");
-        let firstname = document.querySelector("#input-firstname").value;
-        let lastname = document.querySelector("#input-lastname").value;
-        console.log("FN:" +firstname);
-        
-        if(firstname == ""  ){  firstname = "Peter"; }
-
-        firstname = firstname.trim();
-
-        const output = document.querySelector("#output");
-        output.innerHTML = `${message}: ${firstname} ${lastname}`;
-
-        console.log(output);
-
       }
 
       window.onload = init;
