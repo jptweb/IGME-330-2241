@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>XHR - Load Text</title>
+	<style>
+	body{
+	  font-family: sans-serif;
+	}
+	</style>
+
+
+
+</head>
+<body>
+	<h2>XHR - Load Text File</h2>
+	<p>The <code>pet-names.txt</code> file contains popular dog and cat pet names, separated by commas.</p>
+	<p>Note that because XHR is loading a local file, this and the other examples will have to be run off a web server rather than from your computer's hard drive (e.g. banjo.rit.edu or VSCode's liveserver etc)</p>
+	
+	<hr>
+	<button id="my-button">Load Data</button>
+	<p id="output">Click button to load</p>
+
+    <script>
+
+        document.querySelector("#my-button").onclick = loadTextXHR;
+
+        const output = document.querySelector("#output");
+
+
+
+        function loadTextXHR(){
+            console.log("Clicked");
+
+            const url = "./data/pet-names.txt";
+            const xhr = new XMLHttpRequest();
+
+            xhr.onload = (e) => {
+                
+                console.log(`Onload HTPP Status code ${e.target.status}`);
+                const text = e.target.responseText;
+                console.log(`Success the file length is ${text.length}`);
+
+                let names = text.split(",");
+
+                //console.log(names);
+
+                //METHOD 1 START old school loop way
+                    // for(let i = 0; i < names.length;i++){
+                    //     output.innerHTML += `<div>${i+1}. ${names[i]}</div>`;
+                    // }
+                //METHOD 2 END
+
+                //METHOD 2 what a for of?
+                    // let html = "<ol>";
+                    // for(let name of names){
+                    //     html += `<li>${name}</li>`;
+                    // }
+                    // html += "</ol>";
+                    // output.innerHTML = html;
+                //METHOD 2 END
+
+                //METHOD 3 More Systematic way of creating elements (more relevant downstream perhaps but good to know)
+                    // let olElement = document.createElement("ol");
+                    // for(let name of names){
+                    //     let liElement = document.createElement("li");
+                    //     let textNode = document.createTextNode(name);
+                    //     liElement.appendChild(textNode);
+                    //     olElement.appendChild(liElement);
+                    // }
+                    // output.appendChild(olElement);
+                //END Method 3 More systematic way
+
+                //Lets work toward One line!
+
+                //Method 4 lets just see how .map works by calling an external function
+                    // function processName(name){
+                    //     console.log(name);
+                    // }
+                    // //just to show how map works, calls a function for each item with the name as a parameter
+                    // names.map(processName);
+                //End Method 4 (not ready yet)
+
+                //Method 5 lets finish it off!
+                    // let html = "<ol>";
+                    // names.map((name)=>{ html += `<li>${name}</li>`  });
+                    // //NOTE we can further reduce the map command like this too! remove (): names.map(name=>{ html += `<li>${name}</li>`  });
+                    // html += "</ol>";
+                    // output.innerHTML = html;
+                //Method 5 End
+
+                //Interlude Method 6
+                    // //map creates an array essentially, we can shorten it like this and the array of <li> elements gets assigned to nameArray
+                    // let nameArray = names.map(name=> `<li>${name}</li>`  );
+                    // console.log(nameArray);
+                //Interlude Method 6 End  
+
+                //Method 6 "Wait that method wasn't actually 1 line was it you lied"
+                    // //Using the concept we discovered above of returning an array, we can use join to do it in one line and create a string with all <ol>
+                    let html = names.map(name=>`<li>${name}</li>`).join("");
+                    output.innerHTML = `<ol>${html}</ol>`;
+                //Method 6
+            }
+
+            xhr.open("GET",url);
+            xhr.send();
+
+        }
+        
+    </script>
+
+<script>
+
+</script>
+</body>
+</html>

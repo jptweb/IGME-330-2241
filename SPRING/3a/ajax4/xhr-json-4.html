@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>XHR - Load Text</title>
+	<style>
+	body{
+	  font-family: sans-serif;
+	}
+	</style>
+
+
+
+</head>
+<body>
+	<h2>XHR - Load Json File</h2>
+	<p>Note that because XHR is loading a local file, this and the other examples will have to be run off a web server rather than from your computer's hard drive (e.g. banjo.rit.edu or VSCode's liveserver etc)</p>
+	
+	<hr>
+	<button id="json-button">Load Regular Json Data</button>
+    <button id="uuid-json-button">Load UUID Json Data</button>
+
+	<p id="output">Click button to load</p>
+
+    <script>
+
+        document.querySelector("#json-button").onclick = loadJsonXHR;
+        document.querySelector("#uuid-json-button").onclick = loadUuidJson;
+
+        const output = document.querySelector("#output");
+
+
+
+        function loadJsonXHR(){
+            console.log("Clicked");
+
+            const url = "./data/pet-names.json";
+            const xhr = new XMLHttpRequest();
+
+            xhr.onload = (e) => {
+                
+                console.log(`Onload HTPP Status code ${e.target.status}`);
+                const text = e.target.responseText;
+                console.log(`Success the file length is ${text.length}`);
+                
+                //Parse the json: you could simply do this
+                //const json = JSON.parse(text);
+
+                //Or use a try catch! in case it isnt formatted correctly
+                let json;
+                try{
+                    json = JSON.parse(text);
+                }catch{
+                    document.querySelector("#output").innerHTML = "JSON.parse() failed!!!!";
+                return;
+                }
+                
+
+                const catnames = json.catnames;
+                const dognames = json.dognames;
+
+                // console.log(catnames);
+                // console.log(dognames);
+
+                //METHOD 1 START old school loop way
+                    // output.innerHTML = "<h2>Cat Names</h2>";
+                    // for(let i = 0; i < catnames.length;i++){
+                    //     output.innerHTML += `<div>${i+1}. ${catnames[i]}</div>`;
+                    // }
+                //METHOD 2 END
+
+                //METHOD 2 what a for of?
+                    // let html = "<ol>";
+                    // for(let name of catnames){
+                    //     html += `<li>${name}</li>`;
+                    // }
+                    // html += "</ol>";
+                    // output.innerHTML = html;
+                //METHOD 2 END
+
+                //METHOD 3 More Systematic way of creating elements (more relevant downstream perhaps but good to know)
+                    // let olElement = document.createElement("ol");
+                    // for(let name of catnames){
+                    //     let liElement = document.createElement("li");
+                    //     let textNode = document.createTextNode(name);
+                    //     liElement.appendChild(textNode);
+                    //     olElement.appendChild(liElement);
+                    // }
+                    // output.appendChild(olElement);
+                //END Method 3 More systematic way
+
+                //Lets work toward One line!
+
+                //Method 4 lets just see how .map works by calling an external function
+                    // function processName(name){
+                    //     output.innerHTML += `<li>${name}</li>`;
+                    // }
+                    // //just to show how map works, calls a function for each item with the name as a parameter
+                    // catnames.map(processName);
+                //End Method 4 (not ready yet)
+
+                //Method 5 map with annon function lets get closer to finishing it off with MAP!
+                    // let html = "<ol>";
+                    // catnames.map((name)=>{ html += `<li>${name}</li>`  });
+                    // //NOTE we can further reduce the map command like this too! remove (): names.map(name=>{ html += `<li>${name}</li>`  });
+                    // html += "</ol>";
+                    // output.innerHTML = html;
+                //Method 5 End
+
+                //Interlude Method 6
+                    //map creates an array essentially, we can shorten it like this and the array of <li> elements gets assigned to nameArray
+                    // let nameArray = catnames.map(name=> `<li>${name}</li>`  );
+                    // console.log(nameArray);
+                //Interlude Method 6 End  
+
+                //Method 6 "Wait that method wasn't actually 1 line was it you lied"
+                    //Using the concept we discovered above of returning an array, we can use join to do it in one line and create a string with all <ol>
+                    // let html = catnames.map(name=>`<li>${name}</li>`).join("");
+                    // output.innerHTML = `<ol>${html}</ol>`;
+                //Method 6
+
+                //DONE WITH METHODS LETS DO CATS AND DOGS NOW
+                const dogHtml = `<ol>${dognames.map(w => `<li>${w}</li>`).join("")}</ol>`;
+                const catHtml = `<ol>${catnames.map(w => `<li>${w}</li>`).join("")}</ol>`;
+
+                const html = `
+                <h3>Dog Names</h3>
+                ${dogHtml}
+                <h3>Cat Names</h3>
+                ${catHtml}
+                `;
+                
+                output.innerHTML = html;
+
+            }
+
+            xhr.open("GET",url);
+            xhr.send();
+
+        }
+
+        function loadUuidJson(){
+            console.log("Clicked");
+
+            const url = "./data/pet-names-uuid.json";
+            const xhr = new XMLHttpRequest();
+
+            xhr.onload = (e) => {
+
+                console.log(`Onload HTPP Status code ${e.target.status}`);
+                const text = e.target.responseText;
+                console.log(`Success the file length is ${text.length}`);
+
+                const json = JSON.parse(text);
+
+                const keys = Object.keys(json);
+                let html = "";
+
+                for(let k of keys){
+                    const obj = json[k];
+                    html += `<h3>${obj.title}</h3>`;
+                    html += `<ol>${obj["namelist"].map(w => `<li>${w}</li>`).join("")}</ol>`;
+                }
+
+                output.innerHTML = html;
+
+            }
+
+
+            xhr.open("GET",url);
+            xhr.send();
+
+        }
+        
+    </script>
+
+<script>
+
+</script>
+</body>
+</html>
