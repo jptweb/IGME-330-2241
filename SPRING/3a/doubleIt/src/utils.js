@@ -1,3 +1,5 @@
 const doubleIt = num => num * 2;
 
-export {doubleIt};
+const tripleIt = num => num * 2;
+
+// export {doubleIt,tripleIt};

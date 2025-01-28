@@ -1,3 +1,5 @@
+
+
 //import {doubleIt} from "./utils.js";
 import * as utils from "./utils.js";
 
@@ -19,6 +21,7 @@ const init = () => {
   };
 };
 
+window.o//d = init;
 init();
 
 
