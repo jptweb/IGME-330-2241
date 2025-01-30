@@ -34,12 +34,75 @@
 
         function loadJsonXHR(){
             console.log("Clicked btn1");
-            
+            const url = "./data/pet-names.json";
+
+			const xhr = new XMLHttpRequest();
+
+			xhr.onload = (e) =>{
+				//console.log(`Loaded File Contents: ${e.target.responseText}`);
+				const text = e.target.responseText;
+
+				//console.log(text);
+
+				let json;
+
+				try{
+					json = JSON.parse(text);
+				}catch{
+					output.innerHTML = 'JSON Parse Failed'
+					return;
+				}
+
+				//console.log(json);
+				
+				const catnames = json.catnames;
+				const dognames = json.dognames;
+				
+				console.log(catnames);
+				
+				//Old school for
+				// output.innerHTML = "<h2>Cat Names</h2>";
+				// for(let i = 0; i < catnames.length; i++){
+				// 	output.innerHTML += `<div>${i+1}. ${catnames[i]}</div>`;
+				// }
+
+				//method for of
+				// let html = "<ol>";
+				// for(let name of catnames){
+				// 	html += `<li> ${name} </li>`;
+				// }
+				// html += "</ol>";
+				// output.innerHTML = html;
+
+				// function processname(name){
+				// 	console.log(name);
+				// }
+				// catnames.map(processname);
+
+				// let html = "<ol>";
+				// catnames.map((name)=>{
+				// 	console.log(name);
+				// } );
+
+				let html = "<ol>";
+				catnames.map((name)=>{
+					html += `<li> ${name} </li>`
+				} );
+				html += "<ol>";
+
+			}
+
+			xhr.open("GET",url);
+			xhr.send();
+
 
         }
 
         function loadUuidJson(){
             console.log("Clicked btn2");
+			const url = "./data/pet-names-uuid.json";
+
+			const xhr = new XMLHttpRequest();
 
 
 

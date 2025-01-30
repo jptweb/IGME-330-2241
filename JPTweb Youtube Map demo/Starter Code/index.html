@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>Processing Json Data</title>
+	<style>
+	body{
+	  font-family: sans-serif;
+	}
+	</style>
+</head>
+<body>
+	<h2>Processing Json Data</h2>
+	<p>This tutorial will go over processing JSON in javascript and using Map instead of a for loop to print results</p>
+	<hr>
+	<button id="load-json-from-var-btn">Load Json Data from variable</button>
+	<button id="load-json-from-xhr-btn">Load Json Data from file with XHR</button>
+    <button id="load-json-from-fetch-btn">Load Json Data from file with Fetch</button>
+
+	<p id="output">Click button to load</p>
+
+    <script>
+
+        const petnames = {
+        "dognames": ["Bella", "Luna", "Charlie", "Lucy", "Cooper", "Max", "Bailey", "Daisy", "Sadie", "Lola", "Buddy", "Molly", "Stella", "Tucker", "Bear", "Zoey", "Duke", "Harley", "Maggie", "Jax"],
+        "catnames": ["Oliver", "Leo", "Milo", "Charlie", "Simba", "Max", "Jack", "Loki", "Tiger", "Jasper", "Ollie", "Oscar", "George", "Buddy", "Toby", "Smokey", "Finn", "Felix", "Simon", "Shadow"]
+        };
+
+        const catnames = petnames.catnames;
+        const dognames = petnames.dognames;
+
+        document.querySelector("#load-json-from-var-btn").onclick = loadJsonFromVar;
+        document.querySelector("#load-json-from-xhr-btn").onclick = loadJsonFromXHR;
+        document.querySelector("#load-json-from-fetch-btn").onclick = loadJsonFromFetch;
+
+        const output = document.querySelector("#output");
+
+        function loadJsonFromVar(){
+
+            console.log("Clicked Load From Var Button");
+
+            console.log(catnames);
+
+            output.innerHTML = "Hello World";
+
+            //METHOD 1 START old school loop way
+
+            // for(let i = 0; i < catnames.length; i++){
+            //     output.innerHTML += `<div>${i+1}. ${catnames[i]}</div>`;
+            // }
+
+            //METHOD 1 END
+
+            //METHOD 2 a different type of loop... "for of"
+            // html = "<ol>";
+            // for(let name of catnames){
+            //     console.log(name);
+            //     html += `<li>${name}</li>`;
+            // }
+            // html += "</ol>"
+            // output.innerHTML = html;
+
+
+            //METHOD 2 END
+
+            //Lets work toward One line, and using map()
+
+            //Method 3 lets just see how .map works by calling an external function
+            // function processName(name){
+            //     console.log(name)
+            // }
+            // catnames.map( processName );
+
+            //Method 3 END
+
+            //Method 4 map with annon function lets get closer to finishing it off with MAP!
+            // html = "<ol>";
+            // catnames.map( (name)=>{  html  += `<li>${name}</li>` } );
+            // html += "</ol>";
+
+            // output.innerHTML = html;
+
+            //Method 4 End
+
+            //Interlude METHOD 5 - showing map at its basic sense 
+
+            //catnames.map( name=>  html  += `<li>${name}</li>` )
+            // let catNamesArray = catnames.map( name => `<li>${name}</li>` );
+            // console.log(catNamesArray.join(""));
+
+
+            //Interlude Method 5 END 
+
+            //Method 6 - Wait that method wasn't actually 1 line was it you lied
+                // let html = "<ol>" + catnames.map( name => `<li>${name}</li>` ).join("") + "</ol>";
+                // output.innerHTML = html;
+                
+            //Method 6 End
+
+            //Now print out all html with dogs and cats
+            const dogHtml = `<ol>${dognames.map(w => `<li>${w}</li>`).join("")}</ol>`;
+            const catHtml = `<ol>${catnames.map(w => `<li>${w}</li>`).join("")}</ol>`;
+
+            const html = `
+            <h3>Dog Names</h3>
+            ${dogHtml}
+            <h3>Cat Names</h3>
+            ${catHtml}
+            `;
+
+            output.innerHTML = html;
+
+
+        }
+
+        function loadJsonFromXHR(){
+            console.log("Clicked XHR Load Button");
+
+            const url = "./data/pet-names-uuid.json";
+            const xhr = new XMLHttpRequest();
+
+            //To be completed on later video tutorial
+
+        }
+
+        function loadJsonFromFetch(){
+            console.log("Clicked Fetch Load Button");
+
+            //To be completed on later video tutorial
+
+        }
+    </script>
+
+<script>
+
+</script>
+</body>
+</html>
