@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>First Canvas</title>
+	<style>
+	canvas{
+		border:1px solid gray;
+	}
+	</style>
+	<script>
+		// #0 - in this class we will always use ECMAScript 5's "strict" mode
+		// See what 'use strict' does here:
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode
+		"use strict";
+		
+		// #1 call the `init` function after the pages loads
+		window.onload = init;
+	
+		function init(){
+			console.log("page loaded!");
+			// #2 Now that the page has loaded, start drawing!
+			
+			// A - `canvas` variable points at <canvas> tag
+			let canvas = document.querySelector("canvas");
+			
+			// B - the `ctx` variable points at a "2D drawing context"
+			let ctx = canvas.getContext("2d");
+			
+            //Simple Rectangle with border with convenience function
+			ctx.fillStyle = "red";
+            ctx.strokeStyle = "orange";
+            ctx.lineWidth = 10;
+            ctx.fillRect(20,20,600,440);
+            ctx.strokeRect(20,20,600,440);
+
+            //Now lets create a rectangle without convenience function
+            ctx.fillStyle = "green";
+            ctx.strokeStyle = "purple"
+            ctx.beginPath();
+            ctx.rect(80,60,100,200);
+            ctx.fill();
+            ctx.stroke();
+            ctx.closePath();
+
+            //Now lets create a line
+            ctx.strokeStyle = "lightskyblue";
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.lineTo(640,480);
+            ctx.closePath();
+            ctx.stroke();
+
+            //line the opposite way
+            ctx.beginPath();
+            ctx.moveTo(640,0);
+            ctx.lineTo(0,480);
+            ctx.closePath();
+            ctx.stroke();
+
+            //lets do a circle (arc)
+            ctx.strokeStyle = "purple";
+            ctx.beginPath();
+            ctx.arc(320,240,50,0,Math.PI*2,true);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.fill();
+
+            //Make the half circle
+            ctx.strokeStyle = "yellow";
+            ctx.fillStyle = "black";
+            ctx.beginPath();
+            ctx.arc(320,250,20,Math.PI,0,true);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+		}
+	</script>
+</head>
+<body>
+	<canvas width="640" height="480">
+		Get a real browser!
+	</canvas>
+</body>
+</html>
