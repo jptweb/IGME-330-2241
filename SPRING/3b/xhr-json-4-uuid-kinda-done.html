@@ -33,7 +33,7 @@
 
 
         function loadJsonXHR(){
-            console.log("Clicked");
+            console.log("Clicked THIS One");
 
             const url = "./data/pet-names.json";
             const xhr = new XMLHttpRequest();
@@ -56,10 +56,10 @@
                 return;
                 }
                 
-
+                
                 const catnames = json.catnames;
                 const dognames = json.dognames;
-
+                console.log("HERE" + typeof(json.catnames))
                 // console.log(catnames);
                 // console.log(dognames);
 
@@ -82,11 +82,11 @@
                 //Lets work toward One line!
 
                 //Method 4 lets just see how .map works by calling an external function
-                    function processName(name){
-                        output.innerHTML += `<li>${name}</li>`;
-                    }
-                    //just to show how map works, calls a function for each item with the name as a parameter
-                    catnames.map(processName);
+                    // function processName(name){
+                    //     output.innerHTML += `<li>${name}</li>`;
+                    // }
+                    // //just to show how map works, calls a function for each item with the name as a parameter
+                    // catnames.map(processName);
                 //End Method 4 (not ready yet)
 
                 //Method 5 map with annon function lets get closer to finishing it off with MAP!

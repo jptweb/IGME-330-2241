@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bezier Curve Demo</title>
+  </head>
+  <body>
+    <!-- A canvas element where the drawing will take place; dimensions set to 640x480 pixels -->
+    <canvas width="640" height="480"></canvas>
+    <script>
+      // Select the first <canvas> element found in the document.
+      const canvas = document.querySelector("canvas");
+      
+      // Retrieve the 2D drawing context, which provides methods to draw shapes on the canvas.
+      const ctx = canvas.getContext("2d");
+
+      // Begin a new path on the canvas. This starts a fresh drawing sequence.
+      ctx.beginPath();
+
+      // Move the drawing cursor to the starting position (20, 20) without creating any visible line.
+      ctx.moveTo(20, 20);
+
+      // Draw a cubic Bezier curve:
+      // - The starting point is the current position (20, 20).
+      // - The first control point at (20, 100) influences the curve's starting direction.
+      // - The second control point at (200, 100) influences the curve's ending direction.
+      // - The final point of the curve is (200, 20).
+      ctx.bezierCurveTo(20, 100, 200, 100, 200, 20);
+
+      // Render the curve by stroking the current path using the default stroke style.
+      ctx.stroke();
+    </script>
+  </body>
+</html>

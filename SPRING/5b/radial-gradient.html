@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Radial Gradient</title>
+  </head>
+  <body>
+    <canvas width="640" height="480"></canvas>
+    <script>
+      // Get the canvas element from the HTML by its ID
+      const canvas = document.querySelector("canvas");
+
+      // Get the 2D drawing context from the canvas, which lets us draw shapes and colors
+      const ctx = canvas.getContext("2d");
+
+      // Create a radial gradient.
+      // Parameters: inner circle center (75, 50), inner circle radius (0) [a single point],
+      //             outer circle center (75, 50), outer circle radius (50)
+      // Using the same center for both circles keeps it simple.
+      const grd = ctx.createRadialGradient(75, 50, 0, 75, 50, 50);
+
+      // Set the color at the very center (position 0) of the gradient to red
+      grd.addColorStop(0, "red");
+
+      //YOU CAN ADD MORE BUT THEY MUST BE BETWEEN 0 and 1
+
+      // Set the color at the edge (position 1) of the gradient to white
+      grd.addColorStop(.5, "yellow");
+
+      grd.addColorStop(1, "green");
+
+      // Apply the created gradient as the fill style for the drawing context
+      ctx.fillStyle = grd;
+
+      // Draw a filled rectangle starting at (10, 10) with a width of 150 and a height of 100
+      ctx.fillRect(10, 10, 250, 200);
+    </script>
+  </body>
+</html>

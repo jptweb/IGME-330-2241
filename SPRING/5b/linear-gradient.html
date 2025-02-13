@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Linear Gradient</title>
+</head>
+<body>
+<canvas width="640" height="480"></canvas>
+<script>
+
+	let ctx = document.querySelector("canvas").getContext("2d");
+
+	let grad = ctx.createLinearGradient(100, 0, 300, 0);
+    
+    // Create a linear gradient from left (0,0) to right (400,0)
+    const linearGrad = ctx.createLinearGradient(0, 0, 400, 0);
+    // Define color stops: starting with red, transitioning through yellow, ending with blue
+    linearGrad.addColorStop(0, "red");
+    linearGrad.addColorStop(0.5, "yellow");
+    linearGrad.addColorStop(0.7,"maroon")
+    linearGrad.addColorStop(1, "blue");
+
+    // Apply the gradient as the fill style
+    ctx.fillStyle = linearGrad;
+    // Draw a rectangle to showcase the gradient
+    ctx.fillRect(10, 10, 380, 100);
+</script>
+</body>
+</html>
