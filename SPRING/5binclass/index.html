@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <canvas width="640" height="480"></canvas>
+
+    <script>
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+        
+        // ctx.beginPath();
+
+        // ctx.moveTo(20,20);
+
+        // ctx.bezierCurveTo(20,100,200,100,200,20);
+
+        // ctx.stroke();
+
+        // let grad = ctx.createLinearGradient(0,0,400,0);
+
+        // grad.addColorStop(0,"red");
+        // grad.addColorStop(.5,"yellow");
+        // grad.addColorStop(.7,"maroon");
+        // grad.addColorStop(1,"blue");
+
+        // ctx.fillStyle = grad;
+        // ctx.fillRect(10,10,380,100);
+
+        //inner circle center (75,50, 0)
+        //outer circle (75,50,50)
+        const grad = ctx.createRadialGradient(75,50,0, 75,50,50);
+        grad.addColorStop(0,"red");
+        grad.addColorStop(.5,"green");
+        grad.addColorStop(1,"yellow");
+
+        ctx.fillStyle = grad;
+
+        ctx.fillRect(10,10,250,200);
+
+
+    
+    </script>
+    
+</body>
+</html>

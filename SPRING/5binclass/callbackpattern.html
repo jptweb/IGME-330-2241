@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        const names = ['james','jess','lily','sevy'];
+
+
+        const myForEach = (arr, callback) => {
+            for(let i = 0 ; i < arr.length ; i++){
+                const element = arr[i];
+                callback(element);
+            }
+        }
+
+        myForEach(names, function(name){ 
+            console.log(name);
+         } );
+
+
+
+    </script>
+</body>
+</html>
