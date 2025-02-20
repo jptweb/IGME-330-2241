@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+
+      // TODO: Complete the function signature
+      const fetchColors = (callback) => {
+        setTimeout(() => {
+          const colors = ["Red", "Blue", "Green"];
+          // TODO: Call the callback function with the colors array
+          callback(colors);
+        }, 1000);
+      };
+
+      // TODO: Call fetchColors, passing displayColors as the callback
+      fetchColors((colorList)=>{
+        document.querySelector("#color-list").innerHTML = `<ul>${colorList
+          .map((color) => `<li>${color}</li>`)
+          .join("")}</ul>`;       
+      });
+
+    </script>
+    <div id="color-list"></div>
+  </body>
+</html>

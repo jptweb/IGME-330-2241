@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        const displayColors = (colorList) => {
+            document.querySelector("#color-list").innerHTML = 
+                `<ul>${colorList.map(color => `<li>${color}</li>`).join('')}</ul>`;
+        };
+
+        // TODO: Complete the function signature so it accepts count and callback
+        const fetchColors = (count,callback) => {
+            setTimeout(() => {
+                const rainbowColors = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"];
+
+                // TODO: Select up to `count` colors from rainbowColors
+                // If `count` is not provided or 0, default to 1 colo
+                // Ensure count is at least 1 and at most 7
+                const limitedCount = Math.min(Math.max(count, 1), 7);
+
+                // Select the requested number of colors
+                const colors = rainbowColors.slice(0, limitedCount);
+                callback(colors)
+                // TODO: Call the callback function with the selected colors
+            }, 2000);
+        };        
+    </script>
+
+    <div id="color-list"></div>
+
+    <script>
+        fetchColors(3, displayColors);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

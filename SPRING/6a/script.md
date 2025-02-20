@@ -63,3 +63,16 @@ function drawSquare2(ctx,x,y,width,height,rotation,fillStyle,scale) {
     // Restore the original state
     ctx.restore();
 }
+
+
+
+6b
+
+
+Now lets add amimation in.
+
+Go ahead and change init to loop (function and call)
+
+move ctx to global scope
+
+add requestAnimationFrame(loop); to start of loop function

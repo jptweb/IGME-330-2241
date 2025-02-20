@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+<body>
+    <script>
+
+        let a = new Object();
+        a.name = "JP";
+        a.job = "Ambulance Driver";
+        a.goToWork = function(){ 
+            console.log('Im heading to work as a '+this.job) 
+        };
+
+        console.log(a); // {job: 'Ambulance Driver'}
+
+        a.goToWork();
+        // let b = {};
+        // b.name = "bob";
+        // b.job = "mechanic";
+
+        // let c = {name:"Mary", job:"Pilot"};
+        
+
+        
+
+    </script>
+    
+</body>
+</html>

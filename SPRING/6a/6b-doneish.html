@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Canvas Transforms Starter</title>
+    <style>
+      canvas {
+        border: 1px solid gray;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="640" height="480"> Get a real browser! </canvas>
+    <script>
+      "use strict";
+
+      let ctx = document.querySelector("canvas").getContext("2d");
+      loop();
+
+      function loop() {
+        requestAnimationFrame(loop);
+   
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(0, 0, 640, 480);
+
+        // draw a triangle
+        ctx.strokeStyle="red";
+        ctx.rotate(3);
+        ctx.fillStyle="red";
+        ctx.lineWidth="5";
+        ctx.beginPath();
+        ctx.moveTo(500,100);
+        ctx.lineTo(550,200);
+        ctx.lineTo(450,200);
+        ctx.closePath();
+        ctx.stroke();
+
+
+
+      }
+
+      function drawSquare1(ctx, x, y, width, height, fillStyle) {
+        ctx.save();
+        ctx.fillStyle = fillStyle;
+        ctx.fillRect(x, y, width, height);
+        ctx.restore();
+      }
+
+      function drawSquare2(ctx,x,y,width,height,rotation,fillStyle,scale) {
+        // Save the current drawing state
+        ctx.save();
+        // Set the fill style
+        ctx.fillStyle = fillStyle;
+        // Move the origin to (x, y)
+        ctx.translate(x, y);
+        // Rotate the canvas
+        ctx.rotate(rotation);
+        // Scale the canvas
+        ctx.scale(scale, scale);
+        // Draw the rectangle centered at the new origin
+        ctx.fillRect(0 - width / 2, 0 - height / 2, width, height);
+        // Restore the original state
+        ctx.restore();
+      }
+    </script>
+  </body>
+</html>
