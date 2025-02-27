@@ -13,19 +13,32 @@
         let a = new Object();
         a.name = "JP";
         a.job = "Ambulance Driver";
-        a.goToWork = function(){ 
-            console.log('Im heading to work as a '+this.job) 
-        };
+        a.getPaid = function(){
+            console.log("Pay " + a.name + " the money!");
+        }
+        //Object.freeze(a);
+        // a.joob = "CEO";
+        // a.job = "Mechanic";
+        a.toString = function(){ console.log("Person is: " + this.name)  }
+        // a.goToWork = function(){ 
+        //     console.log('Im heading to work as a '+this.job) 
+        // };
 
-        console.log(a); // {job: 'Ambulance Driver'}
+        console.log("Person A name: " + a["name"]);
+        a.getPaid();
+        // console.log(a.toString()); // {job: 'Ambulance Driver'}
+        // console.log(a);
+        // a.goToWork();
+        let b = {};
+        b.name = "bob";
+        b.job = "mechanic";
 
-        a.goToWork();
-        // let b = {};
-        // b.name = "bob";
-        // b.job = "mechanic";
-
-        // let c = {name:"Mary", job:"Pilot"};
+        let c = {name:"Mary", job:"Pilot"};
         
+        let d = Object.create(null)
+        d.name = "Dirk";
+        d.job = "Athlete";
+        console.log(d)
 
         
 
