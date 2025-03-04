@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Image Preloading Demo with Button</title>
+  <style>
+    .image-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    img {
+      border: 1px solid #ccc;
+    }
+    button:disabled {
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Image Preloading Demo with Button</h1>
+  <button id="showImages" disabled>Show Images</button>
+  <div class="image-container" id="imageContainer"></div>
+
+  <script>
+    // I. SCRIPT VARIABLES
+    const imageUrls = [
+      'https://placehold.co/500x500/EEE/31343C?text=Image1',
+      'https://placehold.co/500x500/EEE/31343C?text=Image2',
+      'https://placehold.co/500x500/EEE/31343C?text=Image3'
+    ];
+    let images = [];
+    
+    // II. HELPER FUNCTION
+    const preloadImage = (url, callback) => {
+      let img = new Image();
+      
+      img.onload = () => {
+        images.push(img);
+        callback();
+      };
+      
+      img.onerror = () => {
+        console.log(`Image at url "${url}" wouldn't load! Check your URL!`);
+        callback();
+      };
+      
+      img.src = url;
+    };
+    
+
+    
+
+  </script>
+</body>
+</html>

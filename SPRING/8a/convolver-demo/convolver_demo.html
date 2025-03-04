@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Simple Convolver Demo</title>
+  <!-- Include the BufferLoader script -->
+  <script src="scripts/BufferLoader.js"></script>
+</head>
+<body>
+  <h1>Simple Convolver Demo</h1>
+  <button id="btnPlay">Play/Pause</button>
+  <p>Wait a few seconds after clicking for the files to load.</p>
+  
+  <script>
+    "use strict";
+    let audioCtx, isPlaying = false, sourceBuffer, impulseBuffer;
+    let audioNodes = {};
+    
+    // Helper to resume the audio context if needed.
+    function autoplayFix(){
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+    }
+    
+    // Initialize Web Audio and load the two files using BufferLoader.
+    function initWebaudio(){
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      // First file is the core audio; second is the impulse response.
+      const filePaths = ["sounds/picard.mp3", "sounds/impulse-response/telephone.wav"];
+      let loader = new BufferLoader(audioCtx, filePaths, onLoaded);
+      loader.load();
+    }
+    
+    // Callback once both files are loaded.
+    function onLoaded(buffers){
+      sourceBuffer = buffers[0];    // Core audio buffer
+      impulseBuffer = buffers[1];   // Impulse response buffer
+      console.log("Buffers loaded:", sourceBuffer, impulseBuffer);
+      // Once loaded, start playback if the user already clicked play.
+      playPause();
+    }
+    
+    // Play function: creates nodes, connects them, and starts playback.
+    function play(){
+      autoplayFix();
+      audioNodes.source = audioCtx.createBufferSource();
+      audioNodes.source.buffer = sourceBuffer;
+      
+      // Create and set up the convolver node with the IR buffer.
+      audioNodes.convolver = audioCtx.createConvolver();
+      audioNodes.convolver.buffer = impulseBuffer;
+      
+      // Connect the chain: core audio -> convolver -> speakers.
+      audioNodes.source.connect(audioNodes.convolver);
+      audioNodes.convolver.connect(audioCtx.destination);
+      
+      audioNodes.source.start();
+    }
+    
+    // Stop playback.
+    function stop(){
+      isPlaying = false;
+      if(audioNodes && audioNodes.source){
+        audioNodes.source.stop();
+      }
+    }
+    
+    // Toggle play/pause.
+    function playPause(){
+      // If the audio context isn’t created yet, initialize it.
+      if (!audioCtx) {
+        initWebaudio();
+        return;
+      }
+      isPlaying = !isPlaying;
+      isPlaying ? play() : stop();
+    }
+    
+    // Wire up the button click.
+    document.getElementById("btnPlay").onclick = playPause;
+  </script>
+</body>
+</html>

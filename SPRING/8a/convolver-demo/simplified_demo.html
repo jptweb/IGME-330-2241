@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ConvolverNode Demo</title>
+</head>
+<body>
+  <h1>ConvolverNode Demo</h1>
+  <button id="btnPlay">Play Audio</button>
+  
+  <script>
+    "use strict";
+    
+    // Create the AudioContext.
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = new AudioContext();
+    
+    // ------------------------------
+    // Load the core audio file (picard.mp3)
+    // ------------------------------
+    // Create an audio element and set its properties.
+    let element = new Audio();
+    element.crossOrigin = "anonymous";
+    element.preload = "auto";
+    element.src = "sounds/picard.mp3";  // Core audio file
+    
+    // Create a MediaElementSourceNode from the audio element.
+    let sourceNode = audioCtx.createMediaElementSource(element);
+    
+    // ------------------------------
+    // Load the impulse response file (telephone.wav)
+    // ------------------------------
+    // Create a ConvolverNode to apply the effect.
+    let convolver = audioCtx.createConvolver();
+    
+    // Load the impulse response using XHR.
+    function loadImpulseResponse(url) {
+      const request = new XMLHttpRequest();
+      request.open("GET", url, true);
+      request.responseType = "arraybuffer";
+      request.onload = function() {
+        audioCtx.decodeAudioData(request.response, function(buffer) {
+          convolver.buffer = buffer;
+        });
+      };
+      request.send();
+    }
+    // Load the telephone impulse response.
+    loadImpulseResponse("sounds/impulse-response/telephone.wav");
+    
+    // ------------------------------
+    // Connect the Audio Graph:
+    // Core audio source -> Convolver (with IR) -> Destination (speakers)
+    // ------------------------------
+    sourceNode.connect(convolver);
+    convolver.connect(audioCtx.destination);
+    
+    // ------------------------------
+    // Set up the Play button
+    // ------------------------------
+    document.querySelector("#btnPlay").addEventListener("click", function() {
+      // Resume the AudioContext if needed (for browser autoplay policies).
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+      element.play();
+    });
+  </script>
+</body>
+</html>

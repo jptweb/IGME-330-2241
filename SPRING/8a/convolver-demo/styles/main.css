@@ -1,0 +1,66 @@
+header{ 
+	background-color:#2c2c84;
+	height:100px;
+	color:white;
+	font-size:44px;
+	text-align:center;
+	padding-left:15px;
+	white-space: nowrap;
+	font-family: Galindo, sans-serif;
+	line-height:110px;
+}
+
+p,div{
+	font-family: Galindo, sans-serif;
+}
+	
+/* convolver_demo3 */
+#container {
+	position:absolute;
+	top:225px;
+	left:10px;
+	width: 800px;
+	height: 300px;
+	background-color:#2c2cff; 					/* Firefox */
+	background: -webkit-radial-gradient( 		/* Chrome and Safari */
+	center, 
+	ellipse cover, 
+	#2c2cff 0%,
+	#2c2c2c 100%);
+}	
+
+/* convolver_demo4 */
+#container2 {
+	position:absolute;
+	top:550px;
+	left:10px;
+	width: 800px;
+	height: 300px;
+	background-color:#2c2cff; 					/* Firefox */
+	background: -webkit-radial-gradient( 		/* Chrome and Safari */
+	center, 
+	ellipse cover, 
+	#2c2cff 0%,
+	#2c2c2c 100%);
+}	
+
+
+
+#status{
+	margin-top:1em;
+}
+
+.bar{
+	position:absolute;
+	top:0;
+	left:0;
+	margin:0;
+	padding:0;
+	background-color:green;
+	color:white;
+}
+
+#container:-webkit-full-screen{
+  width: 100%;
+  height: 70%;
+}
