@@ -23,30 +23,36 @@
   <div class="image-container" id="imageContainer"></div>
 
   <script>
-    // I. SCRIPT VARIABLES
-    const imageUrls = [
-      'https://placehold.co/500x500/EEE/31343C?text=Image1',
-      'https://placehold.co/500x500/EEE/31343C?text=Image2',
-      'https://placehold.co/500x500/EEE/31343C?text=Image3'
-    ];
-    let images = [];
+    'usestrict';
+    let a = { name: "Adam" };
+Object.seal(a);
+a.handle = "Rubber Duck";
+console.log(a);
+
+    // // I. SCRIPT VARIABLES
+    // const imageUrls = [
+    //   'https://placehold.co/500x500/EEE/31343C?text=Image1',
+    //   'https://placehold.co/500x500/EEE/31343C?text=Image2',
+    //   'https://placehold.co/500x500/EEE/31343C?text=Image3'
+    // ];
+    // let images = [];
     
-    // II. HELPER FUNCTION
-    const preloadImage = (url, callback) => {
-      let img = new Image();
+    // // II. HELPER FUNCTION
+    // const preloadImage = (url, callback) => {
+    //   let img = new Image();
       
-      img.onload = () => {
-        images.push(img);
-        callback();
-      };
+    //   img.onload = () => {
+    //     images.push(img);
+    //     callback();
+    //   };
       
-      img.onerror = () => {
-        console.log(`Image at url "${url}" wouldn't load! Check your URL!`);
-        callback();
-      };
+    //   img.onerror = () => {
+    //     console.log(`Image at url "${url}" wouldn't load! Check your URL!`);
+    //     callback();
+    //   };
       
-      img.src = url;
-    };
+    //   img.src = url;
+    // };
     
 
     
