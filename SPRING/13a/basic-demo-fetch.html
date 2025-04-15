@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //Part 1
+    //   function loadJsonFetch() {
+    //     const promise = fetch(
+    //       "https://people.rit.edu/~jxtadm/starwars/luke.json"
+    //     ); // get a Star Wars character
+    //     console.log(promise); // "Promise {<pending>}"
+    //   }
+
+      //Part 2
+
+    //   function loadJsonFetch() {
+    //     fetch("https://people.rit.edu/~jxtadm/starwars/luke.json")
+    //       .then((response) => {
+    //         // success
+    //         console.log(response); // Response {type: "cors", url: "https://people.rit.edu/~jxtadm/starwars/luke.json", ...}
+    //         console.log(response.json()); // Promise {<pending>}
+    //       })
+    //       .catch((error) => {
+    //         // error
+    //         console.log(error);
+    //       });
+    //   }
+
+      //Part 3
+
+    //   function loadJsonFetch() {
+    //     fetch("https://people.rit.edu/~jxtadm/starwars/luke.json")
+    //       .then((response) => response.json()) // chain the response.json() promise to the next .then()
+    //       .then((json) => {
+    //         // the second promise is resolved, and `json` is a JSON object
+    //         console.log(json); // {name: "Luke Skywalker", height: "172", mass: "77", hair_color: "blond", ...}
+    //         console.log(json.name); // Luke Skywalker
+    //         console.log(json.homeworld); // https://swapi.dev/api/planets/1/
+    //       })
+    //       .catch((error) => {
+    //         // error
+    //         console.log(error);
+    //       });
+    //   }
+
+      //Part 4
+
+    function loadJsonFetch() {
+        fetch("https://people.rit.edu/~jxtadm/starwars/luke.json")
+        .then((response) => {
+            // If the response is successful, return the JSON
+            if (response.ok) {
+            return response.json();
+            }
+
+            // else throw an error that will be caught below
+            return response.text().then((text) => {
+            throw text;
+            });
+        })
+        // send the response.json() promise to the next .then()
+        .then((json) => {
+            // the second promise is resolved, and `json` is a JSON object
+            console.log(json); // {name: "Luke Skywalker", height: "172", mass: "77", hair_color: "blond", skin_color: ...
+            console.log(json.name); // Luke Skywalker
+            console.log(json.homeworld); // https://swapi.dev/api/planets/1/
+        })
+        .catch((error) => {
+            // error
+            console.log(error);
+        });
+    }
+
+      loadJsonFetch();
+    </script>
+
+    <button type="button" onclick="loadJsonFetch()">Click to fetch</button><br>
+    Note: See your console for activity!
+
+  </body>
+</html>
