@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // A – simple version, no error handling
+      async function loadJsonFetch() {
+        // await ("stay on this line") until the first promise is resolved, meaning the data has downloaded
+        let response = await fetch("https://people.rit.edu/~jxtadm/starwars/luke.json");
+
+        // await ("stay on this line") until the second promise is resolved, meaning we now have a JSON object
+        let json = await response.json();
+        console.log(json);
+        console.log(json.name);
+        console.log(json.homeworld);
+      }
+
+      // // B – handles errors with try/catch
+      // async function loadJsonFetch() {
+      //   try {
+      //     // await ("stay on this line") until the first promise is resolved, meaning the data has downloaded
+      //     let response = await fetch("https://people.rit.edu/~jxtadm/starwars/luke.json");
+
+      //     // If the response is not successful, throw an error
+      //     if (!response.ok) {
+      //       if (response.status == 404) console.log("Do 404 stuff!");
+      //       throw new Error(`HTTP error! status: ${response.status}`);
+      //     }
+
+      //     // await ("stay on this line") until the second promise is resolved, meaning we now have a JSON object
+      //     let json = await response.json();
+      //     console.log(json);
+      //     console.log(json.name);
+      //     console.log(json.homeworld);
+      //   } catch (e) {
+      //     console.log(`In catch with e = ${e}`);
+      //   }
+      // }
+
+      // // C – handles errors with .catch()
+      // function loadJsonFetch() {
+      //   const fetchPromise = async () => {
+      //     // await ("stay on this line") until the first promise is resolved, meaning the data has downloaded
+      //     let response = await fetch("https://people.rit.edu/~jxtadm/starwars/luke.json");
+
+      //     // If the response is not successful, throw an error
+      //     if (!response.ok) {
+      //       throw new Error(`HTTP error! status: ${response.status}`);
+      //     }
+
+      //     // await ("stay on this line") until the second promise is resolved, meaning we now have a JSON object
+      //     let json = await response.json();
+      //     console.log(json);
+      //     console.log(json.name);
+      //     console.log(json.homeworld);
+      //   };
+
+      //   // call fetchPromise() and add a .catch() to it
+      //   // this works because fetchPromise() is async and thus returns a promise!
+      //   fetchPromise().catch((e) => {
+      //     console.log(`In catch with e = ${e}`);
+      //   });
+      // }
+    </script>
+
+    <button type="button" onclick="loadJsonFetch()">Click to fetch</button
+    ><br />
+    Note: See your console for activity!
+  </body>
+</html>

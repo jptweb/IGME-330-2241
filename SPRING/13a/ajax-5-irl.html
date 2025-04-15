@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // function loadJsonFetch(){
+    //     const promise = fetch('https://people.rit.edu/~jxtadm/starwars/luke.json'); // get a Star Wars character
+    //     console.log(promise); // "Promise {<pending>}"
+    // }
+
+    //   function loadJsonFetch() {
+    //     fetch("https://people.rit.edu/~jxtadm/starwars/luke.json")
+    //       .then((response) => {
+    //         // success
+    //         console.log(response); // Response {type: "cors", url: "https://people.rit.edu/~jxtadm/starwars/luke.json", ...}
+    //         console.log(response.json()); // Promise {<pending>}
+    //       })
+    //       .catch((error) => {
+    //         // error
+    //         console.log(error);
+    //       });
+    //   }
+
+      function loadJsonFetch() {
+        fetch("https://people.rit.edu/~jxtadm/starwars/luke.json")
+          .then((response) => response.json()) // chain the response.json() promise to the next .then()
+          .then((json) => {
+            // the second promise is resolved, and `json` is a JSON object
+            console.log(json); // {name: "Luke Skywalker", height: "172", mass: "77", hair_color: "blond", ...}
+            console.log(json.name); // Luke Skywalker
+            console.log(json.homeworld); // https://swapi.dev/api/planets/1/
+          })
+          .catch((error) => {
+            // error
+            console.log(error);
+          });
+      }
+
+    </script>
+    
+    <button onclick="loadJsonFetch()" >Call The API</button>
+</body>
+</html>
