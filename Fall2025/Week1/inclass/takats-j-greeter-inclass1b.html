@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Greeter</title>
+    <style>
+      *{font-size:1.5em;}
+    
+    </style>
+    <script>
+
+    //TO DO QUICKLY class 2B
+
+      // If the user does not enter any text into the <input>, then use a default of "Peter" for the first name
+      // also use String.trim() to get rid of any leading or trailing spaces that the user might have typed in
+
+      // Declaratively (using CSS) make the button 50 pixels tall by 150 pixels wide, with a font-size of 14 points
+      // Imperatively (using JavaScript) give the paragraph a red text color, and a yellow background color
+
+      // Add a media query that kicks in at 1024px or wider:
+      // it gives the <body> a background-color of red
+      // it gives the <body> 100 pixels of padding
+
+
+      // Let's also review how to embed a font from Google Fonts
+
+    "use strict";
+    
+    function sayHello(){
+        //console.log("Hello 123");
+        let name = document.querySelector("#input-firstname");
+        //console.log("Name" + name.value);
+
+        let output = document.querySelector("#output");
+        //output.innerHTML = "Hello " + name.value;
+        output.innerHTML = `Hello ${name.value}. Thanks`;
+
+    }
+
+    function init(){
+      // 1 - get a reference to the button
+      let button1 = document.querySelector("#button-hello");
+      
+      // 2 - add a click event to button that calls a `sayHello` function
+      //button1.onclick = sayHello;
+      //button1.addEventListener('click', function(){ sayHello();  });
+      button1.addEventListener('click', sayHello);
+
+    }
+
+    window.onload = init;
+
+    </script>
+  </head>
+<body>
+  <button id="button-hello">Say Hello!</button>
+  <input id="input-firstname" placeholder="Type in your name">
+
+  <p id="output">???</p>
+
+  <script>
+
+    
+  </script>
+</body>
+</html>
