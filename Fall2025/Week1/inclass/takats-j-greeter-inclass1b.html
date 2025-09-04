@@ -5,8 +5,14 @@
     <title>Greeter</title>
     <style>
       *{font-size:1.5em;}
+      #output{
+        font-family:'Noto Sans';
+      }
     
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script>
 
     //TO DO QUICKLY class 2B
@@ -28,14 +34,25 @@
 
     "use strict";
     
+
+
     function sayHello(){
         //console.log("Hello 123");
         let name = document.querySelector("#input-firstname");
         //console.log("Name" + name.value);
 
         let output = document.querySelector("#output");
+
+        document.querySelector("#output").style.backgroundColor = "red";
+        output.style.color = "white";
+
         //output.innerHTML = "Hello " + name.value;
-        output.innerHTML = `Hello ${name.value}. Thanks`;
+        output.innerHTML = `Hello ${name.value.trim()}. Thanks`;
+
+        if(!name.value){
+
+          alert("Fill in name!");
+        }
 
     }
 

@@ -1,0 +1,28 @@
+- Modules: Variables like usageObj, ascending, descending, and calcMean in utils.js are truly private - they're not
+  accessible from outside
+  - No-modules: Everything in utils.js becomes global - polluting the window object. Students can open console and type
+  ascending, isNumeric, etc. and access them
+
+  2. Explicit Dependencies
+
+  - Modules: Clear import/export statements show exactly what's being used (import { sortAscending, isNumeric })
+  - No-modules: No clarity on what functions main.js needs from utils.js
+
+  3. Automatic Benefits
+
+  - Strict mode by default (note the comments in the code)
+  - Deferred execution - no need for window.onload
+  - Better tree-shaking for build tools
+
+  4. Load Order Independence
+
+  - Modules: Browser handles dependencies automatically
+  - No-modules: Must load utils.js before main.js in HTML (lines 7-8)
+
+  Live Demo Ideas:
+
+  1. Open DevTools console and show global pollution in no-modules version
+  2. Try accessing "private" functions - works in no-modules, fails in modules
+  3. Switch script tag order in no-modules version - breaks the app
+  4. Show how modules version has cleaner global scope
+  5. Demonstrate that changing a "private" function name in modules version only requires updating that file
